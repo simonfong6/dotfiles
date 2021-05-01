@@ -41,6 +41,19 @@ jobs:
           context: shells/zsh
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+      -
+        name: Print tags
+        run: echo ${{ steps.meta.outputs.tags }}
+
+  print-tags:
+    runs-on: ubuntu-latest
+    needs:
+      - build-zsh-latest
+    steps:
+      -
+        name: Print tags
+        run: echo {{ needs.build-zsh-image.outputs.tags }}
+
   zsh:
     runs-on: ubuntu-latest
     container:
