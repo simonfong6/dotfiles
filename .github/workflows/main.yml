@@ -64,3 +64,6 @@ jobs:
         run: |
           source shells/zsh/prompt.zsh
           echo $(git_branch_name)
+          if [[ "$(git_branch_name)" != "(master)" ]]; then
+            exit 1;
+          fi
