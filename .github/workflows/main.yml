@@ -55,12 +55,12 @@ jobs:
     steps:
       -
         name: Print tags
-        run: echo {{ needs.build-zsh-image.outputs.tags }}
+        run: echo ${{ needs.build-zsh-image.outputs.tags }}
 
   zsh:
     runs-on: ubuntu-latest
     container:
-      image: simonfong6/dotfiles-zsh:${{ needs.build-zsh-image.outputs.tags }}
+      image: ${{ needs.build-zsh-image.outputs.tags }}
     needs:
       - build-zsh-image
 
