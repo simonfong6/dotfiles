@@ -9,6 +9,9 @@ on:
 jobs:
   build-zsh-image:
     runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
+
     steps:
       -
         name: Checkout
@@ -41,7 +44,10 @@ jobs:
   zsh:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:focal-20210416
+      image: simonfong6/dotfiles-zsh:${{ needs.build-zsh-image.outputs.tags }}
+    needs:
+      - build-zsh-image
+
     steps:
       - uses: actions/checkout@v2
 
