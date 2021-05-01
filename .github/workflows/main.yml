@@ -18,7 +18,7 @@ jobs:
         id: meta
         uses: crazy-max/ghaction-docker-meta@v2
         with:
-          images: simonfong6/dotfiles-zshrc
+          images: simonfong6/dotfiles/zsh
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
