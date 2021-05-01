@@ -18,4 +18,4 @@ jobs:
         shell: zsh {0}
         run: |
           source shells/zsh/prompt.zsh
-          git_branch_name
+          echo $(git_branch_name)
