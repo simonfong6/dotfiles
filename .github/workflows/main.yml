@@ -14,8 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Clone Repository
+        run: git clone https://github.com/simonfong6/dotfiles
+
       - name: Git Branch Name
         shell: zsh {0}
+        working-directory: dotfiles
         run: |
           source shells/zsh/prompt.zsh
           echo $(git_branch_name)
