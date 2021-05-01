@@ -9,10 +9,13 @@ on:
 jobs:
   zsh:
     runs-on: ubuntu-latest
+    container:
+      image: frapsoft/zsh
     steps:
       - uses: actions/checkout@v2
 
       - name: Git Branch Name
+        shell: zsh {0}
         run: |
           source shells/zsh/prompt.zsh
           git_branch_name
