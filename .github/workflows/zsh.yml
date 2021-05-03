@@ -10,7 +10,7 @@ env:
   DOCKERHUB_USERNAME: simonfong6
 
 jobs:
-  build-zsh-image:
+  build-image:
     runs-on: ubuntu-latest
     outputs:
       tags: ${{ steps.meta.outputs.tags }}
@@ -50,7 +50,7 @@ jobs:
     container:
       image: ${{ needs.build-zsh-image.outputs.tags }}
     needs:
-      - build-zsh-image
+      - build-image
 
     steps:
       - uses: actions/checkout@v2
