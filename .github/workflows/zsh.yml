@@ -1,4 +1,4 @@
-name: Test
+name: Test zsh
 
 on:
   push:
@@ -45,7 +45,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-  zsh:
+  test-prompt:
     runs-on: ubuntu-latest
     container:
       image: ${{ needs.build-zsh-image.outputs.tags }}
