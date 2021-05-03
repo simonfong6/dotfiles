@@ -51,8 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: simonfong6/dotfiles-zsh:master
-    needs:
-      - build-image
 
     steps:
       - uses: actions/checkout@v2
@@ -74,8 +72,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: simonfong6/dotfiles-zsh:master
-    needs:
-      - build-image
 
     steps:
       - uses: actions/checkout@v2
