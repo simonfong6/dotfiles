@@ -48,7 +48,7 @@ jobs:
   test-prompt:
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.build-zsh-image.outputs.tags }}
+      image: ${{ needs.build-image.outputs.tags }}
     needs:
       - build-image
 
