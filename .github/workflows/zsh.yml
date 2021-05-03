@@ -67,3 +67,24 @@ jobs:
           if [[ "$(git_branch_name)" != "- (master)" ]]; then
             exit 1;
           fi
+
+  test-quick-git:
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ needs.build-image.outputs.tags }}
+    needs:
+      - build-image
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Clone Repository
+        run: git clone https://github.com/simonfong6/dotfiles
+
+      - name: Git Branch Name
+        shell: zsh {0}
+        working-directory: dotfiles
+        run: |
+          source shells/zsh/quick-git.zsh
+          g
+          gs
