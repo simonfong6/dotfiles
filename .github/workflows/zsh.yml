@@ -15,6 +15,11 @@ jobs:
     outputs:
       tags: ${{ steps.meta.outputs.tags }}
 
+    # Only build on master since, we don't want to slow down the tests
+    # Also this changes very in frequently.
+    # If you need to test a new docker image, reference it using
+    # needs: build-image
+    #   image: ${{ steps.meta.outputs.tags }}
     if: github.ref == 'refs/heads/master'
 
     steps:
