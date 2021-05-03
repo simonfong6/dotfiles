@@ -1,4 +1,4 @@
-name: Test
+name: Test zsh
 
 on:
   push:
@@ -10,10 +10,12 @@ env:
   DOCKERHUB_USERNAME: simonfong6
 
 jobs:
-  build-zsh-image:
+  build-image:
     runs-on: ubuntu-latest
     outputs:
       tags: ${{ steps.meta.outputs.tags }}
+
+    if: github.ref == 'refs/heads/master'
 
     steps:
       -
@@ -45,12 +47,10 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
-  zsh:
+  test-prompt:
     runs-on: ubuntu-latest
     container:
-      image: ${{ needs.build-zsh-image.outputs.tags }}
-    needs:
-      - build-zsh-image
+      image: simonfong6/dotfiles-zsh:master
 
     steps:
       - uses: actions/checkout@v2
@@ -62,8 +62,27 @@ jobs:
         shell: zsh {0}
         working-directory: dotfiles
         run: |
-          source shells/zsh/prompt.zsh
+          source ../shells/zsh/prompt.zsh
           echo "$(git_branch_name)"
           if [[ "$(git_branch_name)" != "- (master)" ]]; then
             exit 1;
           fi
+
+  test-quick-git:
+    runs-on: ubuntu-latest
+    container:
+      image: simonfong6/dotfiles-zsh:master
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Clone Repository
+        run: git clone https://github.com/simonfong6/dotfiles
+
+      - name: Test Quick Git
+        shell: zsh {0}
+        working-directory: dotfiles
+        run: |
+          source ../shells/zsh/quick-git.zsh
+          g
+          gs
