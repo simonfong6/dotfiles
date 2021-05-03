@@ -62,7 +62,7 @@ jobs:
         shell: zsh {0}
         working-directory: dotfiles
         run: |
-          source shells/zsh/prompt.zsh
+          source ../shells/zsh/prompt.zsh
           echo "$(git_branch_name)"
           if [[ "$(git_branch_name)" != "- (master)" ]]; then
             exit 1;
@@ -83,6 +83,6 @@ jobs:
         shell: zsh {0}
         working-directory: dotfiles
         run: |
-          source shells/zsh/quick-git.zsh
+          source ../shells/zsh/quick-git.zsh
           g
           gs
