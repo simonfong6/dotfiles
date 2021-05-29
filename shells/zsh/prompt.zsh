@@ -1,10 +1,18 @@
 #!/usr/bin/env zsh
 
+# Handles case where branch name has a `/` in it.
+parse-git-branch(){
+  # refs/heads/$BRANCH_NAME
+  REF_NAME=$(git symbolic-ref HEAD 2> /dev/null)
+
+  echo $REF_NAME | sed -n -e 's|^refs/heads/||p'
+}
+
 # https://medium.com/pareture/simplest-zsh-prompt-configs-for-git-branch-name-3d01602a6f33
 # Find and set branch name var if in git repository.
 function git_branch_name()
 {
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  branch=$(parse-git-branch)
   if [[ $branch == "" ]];
   then
     :
