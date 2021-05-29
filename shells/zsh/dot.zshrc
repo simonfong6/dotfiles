@@ -5,6 +5,8 @@ DIRECTORY_OF_THIS_FILE=${0:a:h}
 
 # Load all files that end in .zsh in this directory.
 for file in $DIRECTORY_OF_THIS_FILE/*.zsh; do
-  echo "Loading $file...";
+  if [[ "$DOTFILE_IMPORTS_QUIET" != "true" ]]; then
+    echo "Loading $file...";
+  fi
   source $file
 done
