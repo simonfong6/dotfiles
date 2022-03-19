@@ -36,3 +36,7 @@ g-cd-host-user() {
 
   cd $REPO_ABSOLUTE_PATH
 }
+
+gtfo() {
+  code . && exit
+}
